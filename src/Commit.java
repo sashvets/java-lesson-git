@@ -20,9 +20,18 @@ public class Commit {
         this.hash = (diff + message + author).hashCode();
     }
 
-    //TODO
+    public int getHash() {
+        return this.hash;
+    }
+
+    public String getAuthor() {
+        return this.author;
+    }
+
     @Override
     public String toString() {
-        return null;
+        return String.format("commit [diff: %s, message: %s, author: %s, time: %s, hash: %d]",
+                this.diff, this.message, this.author, this.time, this.hash);
     }
+
 }

@@ -10,7 +10,12 @@ public class Repository {
     }
 
     public void addBranch(Branch branch) {
-        //TODO Нельзя добавлять ветки с однинаковыми именами
+        for (Branch existingBranch : this.branches) {
+            if (existingBranch.getName().equals(branch.getName())) {
+                System.out.println("Ветка с именем " + branch.getName() + " уже существует.");
+                break;
+            }
+        }
         this.branches.add(branch);
     }
 
@@ -18,14 +23,24 @@ public class Repository {
         return this.branches;
     }
 
-    //TODO
-    public Commit findCommitsByAuthor(String author) {
-        return null;
+    public Set<Commit> findCommitsByAuthor(String author) {
+        Set<Commit> result = new HashSet<>();
+        for (Branch branch : this.branches) {
+            for (Commit commit : branch.getCommits()) {
+                if (commit.getAuthor().equals(author)) {
+                    result.add(commit);
+                }
+            }
+        }
+        return result;
     }
 
-    //TODO
     @Override
     public String toString() {
-        return null;
+        String stringBranches = new String();
+        for (Branch branch : branches) {
+            stringBranches = stringBranches + branch.toString() + "\n";
+        }
+        return String.format("repository [branches:\n%s]", stringBranches);
     }
 }

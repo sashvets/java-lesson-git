@@ -20,12 +20,25 @@ public class Branch {
         return this.commits;
     }
 
-    //TODO
-    public void removeCommit(int hash) {}
+    public String getName() {
+        return this.name;
+    }
 
-    //TODO
+    public void removeCommit(int hash) {
+        for (Commit commit : this.commits) {
+            if (commit.hash == hash) {
+                this.commits.remove(commit);
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
-        return null;
+        String stringCommits = new String();
+        for (Commit commit : commits) {
+            stringCommits = stringCommits + commit.toString() + "\n";
+        }
+        return String.format("branch [name: %s, commits:\n%s]", this.name, stringCommits);
     }
 }
