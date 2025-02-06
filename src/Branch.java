@@ -35,10 +35,10 @@ public class Branch {
 
     @Override
     public String toString() {
-        String stringCommits = new String();
-        for (Commit commit : commits) {
+          String stringCommits = new String();
+        for (Commit commit : getCommits()) {
             stringCommits = stringCommits + commit.toString() + "\n";
         }
-        return String.format("branch [name: %s, commits:\n%s]", this.name, stringCommits);
+       return String.format("branch [name: %s, commits:\n%s]", this.name, stringCommits);
     }
 }

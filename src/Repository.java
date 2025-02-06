@@ -13,7 +13,7 @@ public class Repository {
         for (Branch existingBranch : this.branches) {
             if (existingBranch.getName().equals(branch.getName())) {
                 System.out.println("Ветка с именем " + branch.getName() + " уже существует.");
-                break;
+                return;
             }
         }
         this.branches.add(branch);
@@ -38,7 +38,7 @@ public class Repository {
     @Override
     public String toString() {
         String stringBranches = new String();
-        for (Branch branch : branches) {
+        for (Branch branch : getBranches()) {
             stringBranches = stringBranches + branch.toString() + "\n";
         }
         return String.format("repository [branches:\n%s]", stringBranches);
